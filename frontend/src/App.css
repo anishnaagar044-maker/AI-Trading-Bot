@@ -1,0 +1,86 @@
+body{
+  margin:0;
+  background:#0f172a;
+  font-family:Arial;
+  color:white;
+}
+
+.app{
+  max-width:420px;
+  margin:auto;
+  padding:18px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.top p{color:#94a3b8;}
+
+.safe{
+  background:#14532d;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:20px 0;
+}
+
+.card{
+  background:#1e293b;
+  padding:18px;
+  border-radius:16px;
+}
+
+.stock{
+  background:#1e293b;
+  margin:10px 0;
+  padding:14px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.stock p{
+  color:#94a3b8;
+  margin:4px 0 0;
+}
+
+.right{
+  text-align:right;
+}
+
+.BUY{
+  color:#22c55e;
+}
+
+.WATCH{
+  color:#f59e0b;
+}
+
+.detail{
+  margin-top:20px;
+  background:#1e293b;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+}
+
+button{
+  width:100%;
+  margin-top:15px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:#22c55e;
+  font-weight:bold;
+  font-size:16px;
+}
