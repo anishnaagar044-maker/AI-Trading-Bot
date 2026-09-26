@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
-const stocks = [
+const demoData = [
   { symbol: "ITC", market: "NSE", price: 266.2, score: 78, signal: "BUY" },
   { symbol: "RELIANCE", market: "NSE", price: 1243.9, score: 72, signal: "WATCH" },
   { symbol: "HDFCBANK", market: "NSE", price: 713.0, score: 60, signal: "WATCH" },
@@ -11,7 +11,27 @@ const stocks = [
 ];
 
 export default function App() {
-  const [selected, setSelected] = useState(stocks[0]);
+  const [stocks, setStocks] = useState(demoData);
+  const [selected, setSelected] = useState(demoData[0]);
+
+  useEffect(() => {
+    fetch("/api/market")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("API unavailable");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setStocks(data);
+          setSelected(data[0]);
+        }
+      })
+      .catch(() => {
+        console.log("Using demo data");
+      });
+  }, []);
 
   return (
     <div className="app">
@@ -28,6 +48,7 @@ export default function App() {
           <small>Capital</small>
           <h2>₹5,000</h2>
         </div>
+
         <div className="card">
           <small>Risk</small>
           <h2>₹50</h2>
@@ -58,7 +79,9 @@ export default function App() {
         <h2>{selected.symbol}</h2>
         <p>{selected.market}</p>
 
-        <h1>{selected.market === "NSE" ? "₹" : "$"} {selected.price}</h1>
+        <h1>
+          {selected.market === "NSE" ? "₹" : "$"} {selected.price}
+        </h1>
 
         <h3>AI Score : {selected.score}</h3>
 
